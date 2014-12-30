@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ====================================================================== 
+     Dec 27, 2014 1:51:46 PM                                                        
+
+     HelloWorldJSP    
+     description
+                   
+     qiao                                                                
+     ====================================================================== -->
+<project name="HelloWorldJSP" default="main">
+    <description>
+        This is my first JSP project with ant, and it just says Hello World.
+    	I use ant to manage the build, test, and deployment.
+    	phase1: say "hello world" from the index.jsp
+    	phase2: get "hello world" from a database
+    </description>
+	
+	<!-- remove a warning -->	
+	<presetdef name="javac">
+	   <javac includeantruntime="false"/>
+	</presetdef>
+	
+	<!-- Sets variables which can later be used. -->
+	<!-- The value of a property is accessed via ${} -->
+	<property name="src.dir" location="src"/>
+	<property name="web.dir" location="WebContent"></property>
+	<property name="build.dir" location="build"></property>
+	<property name="lib.dir" location="../Libraries/binaries"/>
+
+
+	<path id="build.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar"/>
+			<include name="**/*.zip"/>
+		</fileset>
+	</path>
+
+    <!-- ================================= 
+          target: main and it's the default one              
+         ================================= -->
+    <target name="main" depends="lib, compile" description="description">
+        
+    </target>
+
+    <!-- - - - - - - - - - - - - - - - - - 
+          target: lib                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="lib">
+    </target>
+	
+	<target name="clean">
+		<delete dir="${build.dir}"></delete>
+	</target>
+	
+	<target name="makedir">
+		<mkdir dir="${build.dir}"/>
+	</target>
+	
+	<!-- ================================= 
+          target: compile              
+         ================================= -->
+    <target name="compile" depends="clean, makedir, compileSrc, compileWeb" description="compile all">
+        
+    </target>
+
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compile                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="compileSrc">
+    	<javac srcdir="${src.dir}"
+         destdir="${build.dir}"
+         classpathref="build.classpath"
+         debug="on"/>       
+    	
+    </target>
+	<!-- - - - - - - - - - - - - - - - - - 
+          target: compileWeb                      
+         - - - - - - - - - - - - - - - - - -->
+    <target name="compileWeb">
+    	<javac srcdir="${web.dir}"
+         destdir="${build.dir}"
+         classpathref="build.classpath"
+         debug="on"/> 
+    </target>
+
+	<!-- ================================= 
+          target: makeWar              
+         ================================= -->
+	<property name="app" value="helloWorld"/>
+	<property name="app.war" value="${basedir}/build/helloWorld.war"/>
+
+    <target name="makeWar" depends="compile" description="make war file">
+        <delete file="${app.war}"></delete>
+    	<war warfile="${app.war}" webxml="WebContent/WEB-INF/web.xml">
+    		<fileset dir="WebContent"/>
+    		<classes dir="${build.dir}"/>
+    	</war>    	
+    </target>
+
+	<!-- ================================= 
+          target: deploy              
+         ================================= -->
+	<!--
+	<property name="url" value="http://localhost:8080/manager/text"/>
+	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask"></taskdef>
+
+    <target name="deploy" depends="makeWar" description="install web application">
+        <deploy url="${url}" username="" password="" path="" war="${app.war}"/>
+    </target>
+    -->
+
+</project>
