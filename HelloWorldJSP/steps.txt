@@ -1,0 +1,4 @@
+day1: ant, done - 12/29/2014
+day2: webservice - http://docs.oracle.com/javaee/6/tutorial/doc/bnayn.html
+day3: jsp - form post
+day4: habinate(OR mapping, database)
