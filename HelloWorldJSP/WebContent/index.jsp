@@ -7,8 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<jsp:fallback></jsp:fallback>
-<% out.print("test"); %>
-<%= "test"%>
+<%= "Hello World! Rong"%>
 </body>
 </html>

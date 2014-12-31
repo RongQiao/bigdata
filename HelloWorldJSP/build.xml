@@ -7,7 +7,7 @@
                    
      qiao                                                                
      ====================================================================== -->
-<project name="HelloWorldJSP" default="main">
+<project name="HelloWorldJSP" default="deploy">
     <description>
         This is my first JSP project with ant, and it just says Hello World.
     	I use ant to manage the build, test, and deployment.
@@ -92,6 +92,7 @@
     <target name="makeWar" depends="compile" description="make war file">
         <delete file="${app.war}"></delete>
     	<war warfile="${app.war}" webxml="WebContent/WEB-INF/web.xml">
+    		<lib dir="C:\Tools\apache-cxf-3.0.3\lib"></lib>
     		<fileset dir="WebContent"/>
     		<classes dir="${build.dir}"/>
     	</war>    	
@@ -103,10 +104,10 @@
 	<!--
 	<property name="url" value="http://localhost:8080/manager/text"/>
 	<taskdef name="deploy" classname="org.apache.catalina.ant.DeployTask"></taskdef>
+    -->
 
     <target name="deploy" depends="makeWar" description="install web application">
-        <deploy url="${url}" username="" password="" path="" war="${app.war}"/>
+        <copy file="${app.war}" todir="C:\Tools\apache-tomcat-8.0.15\webapps" />
     </target>
-    -->
 
 </project>

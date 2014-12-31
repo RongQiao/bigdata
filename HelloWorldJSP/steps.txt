@@ -1,4 +1,26 @@
 day1: ant, done - 12/29/2014
+	using eclipse default ant
 day2: webservice - http://docs.oracle.com/javaee/6/tutorial/doc/bnayn.html
+	after research about JAX-WS, JAX-RS, AXIS etc. glossary, I decided implement the webservice based on CXF + Tomcat + eclipse.
+	tutorial: https://angelozerr.wordpress.com/2011/08/23/jaxwscxf_step1/
+	1. download cxf: http://cxf.apache.org/download.html and install
+	2. use eclipse CXF wizard to create web service
+	3. use ant to deploy into Tomcat
+		->Tomcat error: error listenerstart 
+		reason: lib file
+		solution: add lib dependence for war - war all CXF lib into WEB-INF/lib
+		->Tomcat error: cannot find [META-INF/cxf/cxf-extension-jaxrs-binding.xml]
+		reason: cxf-beans.xml include several import xml like <import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml" />
+		solution: remove the import from cxf-beans.xml, because "It's no longer needed. With 2.4.x, most of the META-INF/cxf files are no longer needed and can be removed. Really, the cxf.xml one is the only one needed."
+		->done
+	summary:
+	http://localhost:8080/helloWorld shows web page
+	http://localhost:8080/helloWorld/services shows web service
+	http://localhost:8080/helloWorld/services/CommentDAOPort?wsdl shows the wsdl
+	the key of the web service
+		java class - using WebService annotation to define the web service
+		web.xml - define the cxf servlet
+		cxf-beans.xml - define the java bean of the web service
+		
 day3: jsp - form post
 day4: habinate(OR mapping, database)

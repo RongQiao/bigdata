@@ -1,0 +1,24 @@
+<xsd:schema xmlns:tns="http://web.bigdata.com/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="http://web.bigdata.com/">
+  <xsd:element name="hello" type="tns:hello"/>
+  <xsd:complexType name="hello">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="user" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="helloResponse" type="tns:helloResponse"/>
+  <xsd:complexType name="helloResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="return" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="getVersion" type="tns:getVersion"/>
+  <xsd:complexType name="getVersion">
+    <xsd:sequence/>
+  </xsd:complexType>
+  <xsd:element name="getVersionResponse" type="tns:getVersionResponse"/>
+  <xsd:complexType name="getVersionResponse">
+    <xsd:sequence>
+      <xsd:element minOccurs="0" name="return" type="xsd:string"/>
+    </xsd:sequence>
+  </xsd:complexType>
+</xsd:schema>
