@@ -1,9 +1,13 @@
 day1: ant, done - 12/29/2014
 	using eclipse default ant
+	tutorial: 
+		http://www.avajava.com/tutorials/categories/ant
+		http://www.vogella.com/tutorials/ApacheAnt/article.html
+	a little bit python, tutorial: https://docs.python.org/2/tutorial/interpreter.html
 day2: webservice - http://docs.oracle.com/javaee/6/tutorial/doc/bnayn.html
 	after research about JAX-WS, JAX-RS, AXIS etc. glossary, I decided implement the webservice based on CXF + Tomcat + eclipse.
 	tutorial: https://angelozerr.wordpress.com/2011/08/23/jaxwscxf_step1/
-	1. download cxf: http://cxf.apache.org/download.html and install
+	1. download cxf: http://cxf.apache.org/download.html and install + config cxf plugin on eclipse
 	2. use eclipse CXF wizard to create web service
 	3. use ant to deploy into Tomcat
 		->Tomcat error: error listenerstart 
@@ -21,6 +25,15 @@ day2: webservice - http://docs.oracle.com/javaee/6/tutorial/doc/bnayn.html
 		java class - using WebService annotation to define the web service
 		web.xml - define the cxf servlet
 		cxf-beans.xml - define the java bean of the web service
-		
+	another thing:
+		used AmazonWebService to deploy my website - war + tomcat, 12 months free
 day3: jsp - form post
+	the process:
+	submit form from html -> servlet(java logic: data from web page in request - put new data into request - forward to jsp) -> jsp show result
+	1. use Bootstrap for style
+		http://www.w3schools.com/bootstrap/bootstrap_get_started.asp, and directly use MaxCDN (Content Delivery Network), don't host local Bootstrap
+	2. define class UserServlet
+		implement doPost(), create a new User, set the attributes based on request, then forward the request to index.jsp  
+	3. define form in hello.html, action=servlet(servlet is defined in web.xml for UserServlet)
+	4. define index.jsp, import User class, and use request.getAttribute to show user's attributes 
 day4: habinate(OR mapping, database)

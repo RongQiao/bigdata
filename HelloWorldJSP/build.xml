@@ -29,6 +29,11 @@
 
 
 	<path id="build.classpath">
+		<fileset dir="C:\Tools\apache-tomcat-8.0.15\lib" id="id">
+    <include name="**/*.jar"/>
+    <exclude name="**/*.zip"/>
+</fileset>
+
 		<fileset dir="${lib.dir}">
 			<include name="**/*.jar"/>
 			<include name="**/*.zip"/>
@@ -92,7 +97,7 @@
     <target name="makeWar" depends="compile" description="make war file">
         <delete file="${app.war}"></delete>
     	<war warfile="${app.war}" webxml="WebContent/WEB-INF/web.xml">
-    		<lib dir="C:\Tools\apache-cxf-3.0.3\lib"></lib>
+    		<!-- <lib dir="C:\Tools\apache-cxf-3.0.3\lib"></lib> -->
     		<fileset dir="WebContent"/>
     		<classes dir="${build.dir}"/>
     	</war>    	
